@@ -1,0 +1,35 @@
+<div class="d-flex flex-column">
+  <div class="d-flex">
+    <h3>Pessoas</h3>
+    <button class="ml-10" (click)="openForm(null)">Adicionar Pessoa</button>
+  </div>
+
+  <table>
+    <thead>
+      <th>Nome</th>
+      <th>Acoes</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of people">
+        <td>{{person.name}}</td>
+        <td>
+          <button (click)="openContactList(person)">Contatos</button>
+          <button class="ml-10" (click)="openForm(person)">Editar</button>
+          <button class="ml-10" (click)="deletePerson(person)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-container [ngSwitch]="showChild">
+    <app-person-form *ngSwitchCase="'form'"
+      [person]="selectedPerson"
+      (cancel)="showChild = null"
+      (personSaved)="personFormSaved()">
+    </app-person-form>
+
+    <app-contact-list *ngSwitchCase="'contact'"
+      [person]="selectedPerson">
+    </app-contact-list>
+  </ng-container>
+</div>

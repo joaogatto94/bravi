@@ -1,0 +1,14 @@
+<div class="d-flex flex-column">
+  <h3>Formulario Pessoa</h3>
+
+  <ng-container [formGroup]="form">
+    <label>Nome da Pessoa</label>
+    <input type="text" formControlName="name">
+
+  </ng-container>
+
+  <div class="d-flex">
+    <button (click)="cancel.emit()">Cancelar</button>
+    <button class="ml-10" (click)="save()" [disabled]="!form.valid">Salvar Pessoa</button>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="d-flex flex-column">
+  <div class="d-flex">
+    <h3>Contatos de {{_person?.name}}</h3>
+    <button class="ml-10" (click)="openForm(null)">Adicionar Contato</button>
+  </div>
+
+  <table>
+    <thead>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>Whatsapp</th>
+      <th>Email</th>
+      <th>Ações</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>{{contact.name}}</td>
+        <td>{{contact.phone}}</td>
+        <td>{{contact.whatsapp}}</td>
+        <td>{{contact.email}}</td>
+        <td>
+          <button class="ml-10" (click)="openForm(contact)">Editar</button>
+          <button class="ml-10" (click)="deleteContact(contact)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-contact-form *ngIf="showForm"
+    [personId]="_person?.id"
+    [contact]="selectedContact"
+    (cancel)="showForm = false"
+    (contactSaved)="contactSaved()">
+  </app-contact-form>
+</div>

@@ -1,0 +1,23 @@
+<div class="d-flex flex-column">
+  <h3>Formulario Contato</h3>
+
+  <ng-container [formGroup]="form">
+    <label>Nome Do Contato</label>
+    <input type="text" formControlName="name">
+
+    <label>Telefone</label>
+    <input type="text" formControlName="phone">
+
+    <label>Whatsapp</label>
+    <input type="text" formControlName="whatsapp">
+
+    <label>Email</label>
+    <input type="text" formControlName="email">
+
+  </ng-container>
+
+  <div class="d-flex">
+    <button (click)="cancel.emit()">Cancelar</button>
+    <button class="ml-10" (click)="save()" [disabled]="!form.valid">Salvar Contato</button>
+  </div>
+</div>
